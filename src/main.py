@@ -9,7 +9,7 @@ def calculate_seasonal_price(product_name, date):
         date (str): Date in mm/dd format
         
     Returns:
-        str: Price message or error message
+        None: Prints price message or error message
     """
     # Product database with base prices
     products = {
@@ -22,23 +22,31 @@ def calculate_seasonal_price(product_name, date):
     
     # Validate product name
     if product_name not in products:
-        return "Welcome to seasonal collections.\nNot available in our collection. Please try another product."
+        print("Welcome to seasonal collections.")
+        print("Not available in our collection. Please try another product.")
+        return
     
     # Parse and validate date
     try:
         parts = date.split('/')
         if len(parts) != 2:
-            return "Welcome to seasonal collections.\nEnter a valid date."
+            print("Welcome to seasonal collections.")
+            print("Enter a valid date.")
+            return
         
         month = int(parts[0])
         day = int(parts[1])
         
         # Validate month and day ranges
         if month < 1 or month > 12 or day < 1 or day > 31:
-            return "Welcome to seasonal collections.\nEnter a valid date."
+            print("Welcome to seasonal collections.")
+            print("Enter a valid date.")
+            return
             
     except (ValueError, IndexError):
-        return "Welcome to seasonal collections.\nEnter a valid date."
+        print("Welcome to seasonal collections.")
+        print("Enter a valid date.")
+        return
     
     # Get base price
     base_price = products[product_name]
@@ -54,7 +62,8 @@ def calculate_seasonal_price(product_name, date):
     else:
         final_price = base_price * 1.25
     
-    return f"Welcome to seasonal collections.\nThe product price is: ${final_price}"
+    print("Welcome to seasonal collections.")
+    print(f"The product price is: ${final_price}")
 
 
 def main():
