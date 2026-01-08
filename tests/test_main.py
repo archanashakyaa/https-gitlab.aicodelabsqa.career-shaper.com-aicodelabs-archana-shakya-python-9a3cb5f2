@@ -37,7 +37,8 @@ class TestSeasonalPriceCalculator:
         """Test invalid product name."""
         calculate_seasonal_price("Diamond", "01/15")
         captured = capsys.readouterr()
-        assert "Not available in our collection" in captured.out
+        assert "Not available in our collection." in captured.out
+        assert "Please try another product." in captured.out
         assert "Welcome to seasonal collections" in captured.out
         
     def test_invalid_date_month_too_high(self, capsys):
